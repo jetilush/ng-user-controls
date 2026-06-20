@@ -2,7 +2,8 @@
 
 Angular workspace for building reusable enterprise-style user controls, starting with:
 - List View
-- Drag and Drop Flex View
+- Code Editor (Monaco-powered)
+- Data Grid
 
 ## Current Tech State
 - Angular: 21.2.x
@@ -34,4 +35,7 @@ npm test
 
 ## Notes
 - This repository is scaffolded and ready for component implementation.
-- The next build step is creating the library/docs structure and implementing `List View` and `Drag and Drop Flex View` controls.
+- Current controls are available in the in-app docs navigation:
+	- `List View` with selection and row drag-drop reorder
+	- `Code Editor` with live content updates
+	- `Data Grid` with sorting, pagination, row selection, row drag-drop reorder, and column drag-drop reorder
