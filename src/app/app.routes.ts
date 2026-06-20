@@ -15,6 +15,10 @@ export const routes: Routes = [
 		loadComponent: () => import('./docs/code-editor-docs/code-editor-docs').then((m) => m.CodeEditorDocsComponent)
 	},
 	{
+		path: 'docs/data-grid',
+		loadComponent: () => import('./docs/data-grid-docs/data-grid-docs').then((m) => m.DataGridDocsComponent)
+	},
+	{
 		path: '**',
 		redirectTo: 'docs/list-view'
 	}

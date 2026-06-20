@@ -1,0 +1,74 @@
+<section class="data-grid">
+  @if (totalRows() === 0) {
+    <p class="empty-state" role="status">{{ emptyText() }}</p>
+  } @else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr
+            cdkDropList
+            cdkDropListOrientation="horizontal"
+            [cdkDropListDisabled]="!enableColumnDragDrop()"
+            [cdkDropListData]="$any(displayedColumns())"
+            (cdkDropListDropped)="reorderColumns($event)"
+          >
+            @if (canReorderRows()) {
+              <th class="drag-col" aria-hidden="true"></th>
+            }
+            @for (column of displayedColumns(); track trackByColumn($index, column)) {
+              <th cdkDrag [cdkDragDisabled]="!enableColumnDragDrop()" [style.width]="column.width ?? null" [style.text-align]="column.align ?? 'left'">
+                <div class="header-cell">
+                  <button
+                    class="sort-button"
+                    type="button"
+                    [disabled]="!column.sortable"
+                    [class.is-active]="isSorted(column)"
+                    (click)="toggleSort(column)"
+                  >
+                    {{ column.header }}
+                    @if (getSortDirection(column) === 'asc') {
+                      <span aria-hidden="true">↑</span>
+                    } @else if (getSortDirection(column) === 'desc') {
+                      <span aria-hidden="true">↓</span>
+                    }
+                  </button>
+
+                  @if (enableColumnDragDrop()) {
+                    <span class="col-drag-handle" cdkDragHandle aria-hidden="true">::</span>
+                  }
+                </div>
+              </th>
+            }
+          </tr>
+        </thead>
+
+        <tbody cdkDropList [cdkDropListData]="$any(visibleRows())" (cdkDropListDropped)="reorderVisibleRows($event)">
+          @for (row of visibleRows(); track trackByRow($index, row)) {
+            <tr cdkDrag [cdkDragDisabled]="!canReorderRows()" [class.is-selected]="isRowSelected(row)" (click)="selectRow(row)">
+              @if (canReorderRows()) {
+                <td class="drag-col">
+                  <span class="drag-handle" cdkDragHandle aria-hidden="true">::</span>
+                </td>
+              }
+              @for (column of displayedColumns(); track trackByColumn($index, column)) {
+                <td [style.text-align]="column.align ?? 'left'">{{ row[column.key] ?? '-' }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="grid-footer">
+      <p>
+        Showing {{ visibleRange().from }}-{{ visibleRange().to }} of {{ totalRows() }}
+      </p>
+
+      <div class="pagination">
+        <button type="button" (click)="prevPage()" [disabled]="currentPageIndex() <= 1">Prev</button>
+        <span>Page {{ currentPageIndex() }} / {{ totalPages() }}</span>
+        <button type="button" (click)="nextPage()" [disabled]="currentPageIndex() >= totalPages()">Next</button>
+      </div>
+    </footer>
+  }
+</section>

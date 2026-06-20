@@ -1,0 +1,53 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>Data Grid</h2>
+    <p>Configurable table with sorting, row selection, and built-in pagination.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Sortable</span>
+      <span>Selectable</span>
+      <span>Paginated</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Provide column metadata and row data, then subscribe to row selection events.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+        <button type="button" class="reset-button" (click)="resetLayout()">Reset layout</button>
+      </div>
+      <uc-data-grid
+        [columns]="columns()"
+        [rows]="rows()"
+        rowIdKey="id"
+        [enableColumnDragDrop]="true"
+        [enableRowDragDrop]="true"
+        [pageSize]="6"
+        (rowSelected)="onRowSelected($event)"
+        (columnsReordered)="onColumnsReordered($event)"
+        (rowsReordered)="onRowsReordered($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>Selected Row</h3>
+      @if (selectedRow(); as row) {
+        <dl class="meta">
+          @for (column of columns(); track column.key) {
+            <div>
+              <dt>{{ column.header }}</dt>
+              <dd>{{ row[column.key] ?? '-' }}</dd>
+            </div>
+          }
+        </dl>
+      } @else {
+        <p class="hint">Click a row in the grid to inspect the selected data.</p>
+      }
+    </article>
+  </section>
+</article>
