@@ -1,0 +1,30 @@
+<div class="scatter-wrapper" [style.height]="height()">
+  <header class="scatter-head">
+    <h3 class="scatter-label">{{ label() }}</h3>
+    <div class="scatter-meta">
+      @if (hoveredPoint(); as pt) {
+        <span class="hover-badge">
+          @if (pt.series) { <em>{{ pt.series }}</em> · }
+          x:{{ pt.x.toFixed(2) }}&nbsp; y:{{ pt.y.toFixed(2) }}&nbsp; z:{{ pt.z.toFixed(2) }}
+        </span>
+      }
+      <span class="fps-badge" aria-hidden="true">{{ fps() }} fps</span>
+    </div>
+  </header>
+
+  <div class="canvas-container">
+    <canvas #scatterCanvas class="scatter-canvas"></canvas>
+  </div>
+
+  @if (seriesLegend().length) {
+    <footer class="scatter-legend" aria-label="Series legend">
+      @for (s of seriesLegend(); track s.name) {
+        <div class="legend-item">
+          <span class="legend-dot" [style.background]="s.color" aria-hidden="true"></span>
+          <span>{{ s.name }}</span>
+        </div>
+      }
+      <span class="point-count">{{ pointCount() }} points</span>
+    </footer>
+  }
+</div>

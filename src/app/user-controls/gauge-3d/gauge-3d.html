@@ -1,0 +1,16 @@
+<div class="gauge-wrapper" [style.height]="height()">
+  <div class="canvas-container">
+    <canvas #gaugeCanvas class="gauge-canvas"></canvas>
+
+    <div class="value-overlay" aria-live="polite">
+      <span class="value-num" [style.color]="displayColor()">{{ displayValue() }}</span>
+      @if (unit()) {
+        <span class="value-unit">{{ unit() }}</span>
+      }
+    </div>
+
+    <span class="fps-badge" aria-hidden="true">{{ fps() }} fps</span>
+  </div>
+
+  <p class="gauge-lbl">{{ label() }}</p>
+</div>

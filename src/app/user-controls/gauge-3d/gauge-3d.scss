@@ -1,0 +1,72 @@
+:host { display: block; }
+
+.gauge-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #08141e;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #1a3349;
+}
+
+.canvas-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.gauge-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Value overlay — centered in the gap at the bottom of the gauge arc */
+.value-overlay {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.value-num {
+  font-size: 1.85rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.4s ease;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 60%);
+}
+
+.value-unit {
+  font-size: 0.75rem;
+  color: #5a8aaa;
+  font-weight: 600;
+  margin-top: 0.1rem;
+}
+
+.fps-badge {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.65rem;
+  font-size: 0.68rem;
+  color: #2a5570;
+  font-variant-numeric: tabular-nums;
+}
+
+.gauge-lbl {
+  margin: 0;
+  padding: 0.4rem 0.7rem 0.55rem;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #5a8aaa;
+  border-top: 1px solid #132235;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,117 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>3D Gauge</h2>
+    <p>An animated speedometer-style dial with threshold color zones, a lerp-animated needle, tick marks, and an HTML value overlay — all rendered in Three.js.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Three.js</span>
+      <span>Animated Needle</span>
+      <span>Threshold Zones</span>
+      <span>Bezel + Glass</span>
+      <span>Orbit Controls</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Bind <code>[value]</code> to any numeric signal. The needle lerps smoothly to the new position. Define <code>thresholds</code> in ascending order — each entry colors from the previous threshold (or min) up to its <code>value</code>.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <!-- Interactive demo -->
+  <section class="example-grid">
+    <article class="example-card gauge-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+        <div class="controls-row">
+          @for (key of themes; track key) {
+            <button type="button" class="ctrl-btn" [class.is-active]="themeKey() === key" (click)="setTheme(key)">
+              {{ themeLabels[key] }}
+            </button>
+          }
+          <span class="divider" aria-hidden="true"></span>
+          <button type="button" class="ctrl-btn" (click)="toggleBackground()">
+            {{ background() === 'dark' ? 'Light' : 'Dark' }}
+          </button>
+        </div>
+      </div>
+
+      <uc-gauge-3d
+        [label]="themeLabels[themeKey()]"
+        [value]="sliderValue()"
+        [min]="0"
+        [max]="themeMax[themeKey()]"
+        [unit]="themeUnits[themeKey()]"
+        [thresholds]="themeThresholds[themeKey()]"
+        [background]="background()"
+        height="340px"
+      />
+
+      <!-- Slider -->
+      <div class="slider-row">
+        <span class="slider-label">0</span>
+        <input
+          type="range"
+          class="value-slider"
+          [min]="0"
+          [max]="themeMax[themeKey()]"
+          [value]="sliderValue()"
+          (input)="onSlider($event)"
+          aria-label="Gauge value"
+        />
+        <span class="slider-label">{{ themeMax[themeKey()] }}</span>
+        <span class="slider-current">{{ sliderValue() }}&nbsp;{{ themeUnits[themeKey()] }}</span>
+      </div>
+
+      <div class="preset-row">
+        @for (v of [10, 25, 50, 65, 80, 95]; track v) {
+          <button type="button" class="preset-btn" (click)="setPreset(v)">{{ v }}</button>
+        }
+      </div>
+    </article>
+
+    <article class="example-card info-card">
+      <h3>Design</h3>
+      <ul class="feature-list">
+        <li>240° arc sweep (7 o'clock → 5 o'clock)</li>
+        <li>80 colored box segments per arc</li>
+        <li>Needle lerps to target value at 7 % / frame</li>
+        <li>Gauge body: CylinderGeometry face + TorusGeometry bezel</li>
+        <li>Glass cover (MeshPhongMaterial, opacity 6 %)</li>
+        <li>Value display: HTML overlay (no canvas texture redraws)</li>
+        <li>5 tick marks with canvas-sprite labels</li>
+        <li>Threshold zones configurable — supports reversed polarity</li>
+        <li>Drag to orbit, scroll to zoom</li>
+      </ul>
+
+      <div class="tip-block">
+        <p class="tip-title">Reversed polarity</p>
+        <p class="tip-body">For "higher is better" metrics, sort thresholds red → yellow → green:</p>
+        <pre class="mini-code"><code>// Health score: 0–30 bad, 70–100 good
+[
+  &#123; value: 30,  color: '#ef4444' &#125;,
+  &#123; value: 70,  color: '#eab308' &#125;,
+  &#123; value: 100, color: '#22c55e' &#125;
+]</code></pre>
+      </div>
+    </article>
+  </section>
+
+  <!-- Dashboard grid -->
+  <section class="dashboard-section">
+    <h3 class="dash-title">Dashboard Preview</h3>
+    <p class="dash-sub">Four gauges rendered simultaneously — each with independent values and thresholds.</p>
+    <div class="dash-grid">
+      @for (g of dashGauges; track g.label) {
+        <uc-gauge-3d
+          [label]="g.label"
+          [value]="g.value"
+          [min]="g.min"
+          [max]="g.max"
+          [unit]="g.unit"
+          [thresholds]="g.thresholds"
+          height="280px"
+        />
+      }
+    </div>
+  </section>
+</article>

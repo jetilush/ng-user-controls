@@ -1,0 +1,105 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>3D Scatter Plot</h2>
+    <p>Plots arbitrary point clouds in true 3D space using <code>InstancedMesh</code> — fast, colorable by series, with hover inspection and click selection.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Three.js</span>
+      <span>InstancedMesh</span>
+      <span>X / Y / Z Axes</span>
+      <span>Series Legend</span>
+      <span>Hover + Click</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Pass a <code>points</code> array of <code>&#123; x, y, z, color?, series?, size?, label? &#125;</code>. If <code>series</code> is set, points are coloured from a built-in palette (or per-point <code>color</code> overrides it).</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card scatter-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+        <div class="controls-row">
+          @for (key of presets; track key) {
+            <button
+              type="button"
+              class="ctrl-btn"
+              [class.is-active]="preset() === key"
+              (click)="setPreset(key)"
+            >{{ presetLabels[key] }}</button>
+          }
+          <span class="divider" aria-hidden="true"></span>
+          <button type="button" class="ctrl-btn" [class.is-active]="autoRotate()" (click)="toggleAutoRotate()">Auto-rotate</button>
+        </div>
+      </div>
+
+      <p class="preset-desc">{{ presetDesc[preset()] }}</p>
+
+      <uc-scatter-plot-3d
+        [label]="presetLabels[preset()]"
+        [points]="activePoints"
+        xLabel="X"
+        yLabel="Y"
+        zLabel="Z"
+        [autoRotate]="autoRotate()"
+        height="400px"
+        (pointClicked)="onPointClicked($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>Clicked Point</h3>
+
+      @if (lastClicked(); as pt) {
+        <dl class="meta">
+          <div><dt>x</dt><dd class="num">{{ pt.x.toFixed(4) }}</dd></div>
+          <div><dt>y</dt><dd class="num">{{ pt.y.toFixed(4) }}</dd></div>
+          <div><dt>z</dt><dd class="num">{{ pt.z.toFixed(4) }}</dd></div>
+          @if (pt.series) {
+            <div><dt>Series</dt><dd>{{ pt.series }}</dd></div>
+          }
+          @if (pt.label) {
+            <div><dt>Label</dt><dd>{{ pt.label }}</dd></div>
+          }
+          @if (pt.size) {
+            <div><dt>Size</dt><dd>{{ pt.size }}</dd></div>
+          }
+          @if (pt.color) {
+            <div>
+              <dt>Color</dt>
+              <dd><span class="swatch" [style.background]="pt.color"></span>{{ pt.color }}</dd>
+            </div>
+          }
+        </dl>
+      } @else {
+        <p class="hint">Hover a point to see its values in the top bar. Click to pin it here.</p>
+      }
+
+      <div class="tip-block">
+        <p class="tip-title">Navigation</p>
+        <ul class="tip-list">
+          <li>Drag — orbit</li>
+          <li>Scroll — zoom</li>
+          <li>Right-drag — pan</li>
+          <li>Hover point — inspect in header</li>
+          <li>Click point — pin data here</li>
+        </ul>
+      </div>
+
+      <div class="tip-block">
+        <p class="tip-title">Point interface</p>
+        <pre class="mini-code"><code>interface ScatterPoint &#123;
+  x: number;
+  y: number;
+  z: number;
+  label?: string;
+  color?: string;  // hex / rgb
+  series?: string; // auto-colored
+  size?: number;   // size multiplier
+&#125;</code></pre>
+      </div>
+    </article>
+  </section>
+</article>

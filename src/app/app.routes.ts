@@ -39,6 +39,14 @@ export const routes: Routes = [
 		loadComponent: () => import('./docs/network-graph-docs/network-graph-docs').then((m) => m.NetworkGraphDocsComponent)
 	},
 	{
+		path: 'docs/scatter-plot-3d',
+		loadComponent: () => import('./docs/scatter-plot-3d-docs/scatter-plot-3d-docs').then((m) => m.ScatterPlot3dDocsComponent)
+	},
+	{
+		path: 'docs/gauge-3d',
+		loadComponent: () => import('./docs/gauge-3d-docs/gauge-3d-docs').then((m) => m.Gauge3dDocsComponent)
+	},
+	{
 		path: '**',
 		redirectTo: 'docs/list-view'
 	}
