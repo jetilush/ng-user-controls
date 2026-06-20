@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.code-editor {
+  border: 1px solid #24384b;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0e1c2b;
+  box-shadow: 0 12px 28px rgb(12 30 46 / 24%);
+}
+
+.editor-header {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.8rem;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #b7d7f5;
+  border-bottom: 1px solid #24384b;
+  background: linear-gradient(90deg, #10283d 0%, #0d2134 100%);
+}
+
+.editor-meta {
+  color: #7fb5e8;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.editor-host {
+  width: 100%;
+  height: calc(100% - 38px);
+}

@@ -1,0 +1,36 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>Code Editor</h2>
+    <p>A Monaco-powered code editor control with language, theme, and change output support.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Monaco</span>
+      <span>Live Output</span>
+      <span>Theme Ready</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Bind code text with <strong>value</strong> and handle updates with <strong>valueChanged</strong>.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card">
+      <h3>Live Example</h3>
+      <uc-code-editor
+        label="TypeScript Example"
+        [value]="currentCode()"
+        language="typescript"
+        theme="vs-dark"
+        height="420px"
+        (valueChanged)="onCodeChanged($event)"
+      />
+    </article>
+
+    <article class="example-card preview-card">
+      <h3>Output Preview</h3>
+      <pre><code>{{ currentCode() }}</code></pre>
+    </article>
+  </section>
+</article>

@@ -1,43 +1,41 @@
-<main class="page">
-  <header class="hero">
-    <h1>First User Control: List View</h1>
-    <p>Reusable, selectable, and now reorderable with drag and drop.</p>
-  </header>
+<main class="docs-shell">
+  <aside class="docs-nav" aria-label="User controls navigation">
+    <div class="brand-block">
+      <p class="eyebrow">Developer Portal</p>
+      <h1>User Controls</h1>
+      <p class="intro">Open each control to see docs, API usage, and a live interactive example.</p>
+    </div>
 
-  <section class="layout">
-    <article class="panel">
-      <h2>Preview</h2>
-      <uc-list-view
-        label="Team members"
-        emptyText="No team members found."
-        [items]="users()"
-        (itemSelected)="onItemSelected($event)"
-        (itemsReordered)="onItemsReordered($event)"
-      />
-    </article>
+    <nav>
+      <a routerLink="/docs/list-view" routerLinkActive="is-active">List View</a>
+      <a routerLink="/docs/code-editor" routerLinkActive="is-active">Code Editor</a>
+    </nav>
 
-    <article class="panel">
-      <h2>Selection</h2>
-      @if (selected(); as current) {
-        <dl class="meta">
-          <div>
-            <dt>ID</dt>
-            <dd>{{ current.id }}</dd>
-          </div>
-          <div>
-            <dt>Name</dt>
-            <dd>{{ current.title }}</dd>
-          </div>
-          @if (current.subtitle) {
-            <div>
-              <dt>Role</dt>
-              <dd>{{ current.subtitle }}</dd>
-            </div>
-          }
-        </dl>
-      } @else {
-        <p class="hint">Select an item from the List View.</p>
-      }
-    </article>
+    <div class="status-card">
+      <p class="status-title">Workspace Status</p>
+      <p class="status-value">2 controls ready</p>
+      <p class="status-note">Add more controls and they appear in this docs navigation.</p>
+    </div>
+
+    <p class="nav-footer">Built with Angular + standalone components</p>
+  </aside>
+
+  <section class="docs-stage">
+    <header class="stage-topbar">
+      <div>
+        <p class="topbar-title">Control Documentation</p>
+        <p class="topbar-subtitle">Usage, examples, and behavior notes</p>
+      </div>
+
+      <div class="topbar-pills" aria-hidden="true">
+        <span>Angular</span>
+        <span>TypeScript</span>
+        <span>UI Library</span>
+      </div>
+    </header>
+
+    <section class="docs-content">
+      <router-outlet />
+    </section>
   </section>
 </main>

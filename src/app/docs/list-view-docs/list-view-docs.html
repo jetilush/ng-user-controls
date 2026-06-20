@@ -1,0 +1,54 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>List View</h2>
+    <p>Select, reorder, and render list items with a simple API.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Selectable</span>
+      <span>Drag Reorder</span>
+      <span>Standalone</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Pass an array of items and subscribe to selection and reorder outputs.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card">
+      <h3>Live Example</h3>
+      <uc-list-view
+        label="Team members"
+        emptyText="No team members found."
+        [items]="users()"
+        (itemSelected)="onItemSelected($event)"
+        (itemsReordered)="onItemsReordered($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>Selected Item</h3>
+      @if (selected(); as current) {
+        <dl class="meta">
+          <div>
+            <dt>ID</dt>
+            <dd>{{ current.id }}</dd>
+          </div>
+          <div>
+            <dt>Name</dt>
+            <dd>{{ current.title }}</dd>
+          </div>
+          @if (current.subtitle) {
+            <div>
+              <dt>Role</dt>
+              <dd>{{ current.subtitle }}</dd>
+            </div>
+          }
+        </dl>
+      } @else {
+        <p class="hint">Select an item from the example list.</p>
+      }
+    </article>
+  </section>
+</article>

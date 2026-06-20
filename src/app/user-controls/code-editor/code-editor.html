@@ -1,0 +1,7 @@
+<section class="code-editor" [style.height]="height()">
+  <header class="editor-header">
+    <span>{{ label() }}</span>
+    <span class="editor-meta">{{ language() }} | {{ theme() }}</span>
+  </header>
+  <div #editorHost class="editor-host" role="application" [attr.aria-label]="label()"></div>
+</section>
