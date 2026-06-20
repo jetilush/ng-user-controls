@@ -31,6 +31,10 @@ export const routes: Routes = [
 		loadComponent: () => import('./docs/bar-chart-3d-docs/bar-chart-3d-docs').then((m) => m.BarChart3dDocsComponent)
 	},
 	{
+		path: 'docs/surface-plot',
+		loadComponent: () => import('./docs/surface-plot-docs/surface-plot-docs').then((m) => m.SurfacePlotDocsComponent)
+	},
+	{
 		path: '**',
 		redirectTo: 'docs/list-view'
 	}

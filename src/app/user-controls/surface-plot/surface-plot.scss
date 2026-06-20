@@ -1,0 +1,87 @@
+:host {
+  display: block;
+}
+
+.plot-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #08141e;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1a3349;
+}
+
+.plot-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid #132235;
+  flex-shrink: 0;
+}
+
+.plot-label {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #7db8d8;
+}
+
+.plot-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hovered-val {
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: #c8e4ff;
+  font-weight: 600;
+  background: #0f2a3d;
+  padding: 0.18rem 0.45rem;
+  border-radius: 5px;
+  border: 1px solid #1e4060;
+}
+
+.fps-badge {
+  font-size: 0.7rem;
+  color: #3a6a88;
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.plot-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.plot-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.9rem;
+  border-top: 1px solid #132235;
+  flex-shrink: 0;
+}
+
+.legend-bound {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: #5a8aaa;
+  flex-shrink: 0;
+}
+
+.legend-gradient {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid #1e3a52;
+}

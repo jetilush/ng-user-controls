@@ -1,0 +1,21 @@
+<div class="plot-wrapper" [style.height]="height()">
+  <header class="plot-head">
+    <h3 class="plot-label">{{ label() }}</h3>
+    <div class="plot-meta">
+      @if (hoveredValue() !== null) {
+        <span class="hovered-val">{{ hoveredValue()!.toFixed(3) }}</span>
+      }
+      <span class="fps-badge" aria-hidden="true">{{ fps() }} fps</span>
+    </div>
+  </header>
+
+  <div class="canvas-container">
+    <canvas #surfaceCanvas class="plot-canvas"></canvas>
+  </div>
+
+  <footer class="plot-legend" aria-label="Value range">
+    <span class="legend-bound">{{ minLabel() }}</span>
+    <div class="legend-gradient" [style.background]="gradientCss()" role="presentation"></div>
+    <span class="legend-bound">{{ maxLabel() }}</span>
+  </footer>
+</div>

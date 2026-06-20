@@ -1,0 +1,97 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>3D Surface Plot</h2>
+    <p>Renders a 2D grid of values as a height-mapped mesh with vertex coloring, animated rise, and live hover inspection.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Three.js</span>
+      <span>Vertex Colors</span>
+      <span>Animated</span>
+      <span>Hover Sphere</span>
+      <span>Color Scales</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Pass a <code>data</code> input of type <code>number[][]</code> — a 2D grid where each cell is a scalar value. The component normalises the range and maps it to the chosen color scale.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card plot-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+        <div class="controls-row">
+          @for (key of presets; track key) {
+            <button
+              type="button"
+              class="ctrl-btn"
+              [class.is-active]="preset() === key"
+              (click)="setPreset(key)"
+            >{{ presetLabels[key] }}</button>
+          }
+
+          <span class="divider" aria-hidden="true"></span>
+
+          @for (scale of colorScales; track scale) {
+            <button
+              type="button"
+              class="ctrl-btn"
+              [class.is-active]="colorScale() === scale"
+              (click)="setScale(scale)"
+            >{{ scale }}</button>
+          }
+
+          <span class="divider" aria-hidden="true"></span>
+
+          <button type="button" class="ctrl-btn" [class.is-active]="wireframe()"   (click)="toggleWireframe()">Wireframe</button>
+          <button type="button" class="ctrl-btn" [class.is-active]="autoRotate()" (click)="toggleAutoRotate()">Auto-rotate</button>
+        </div>
+      </div>
+
+      <uc-surface-plot
+        [label]="presetLabels[preset()]"
+        [data]="activeData"
+        [colorScale]="colorScale()"
+        [showWireframe]="wireframe()"
+        [autoRotate]="autoRotate()"
+        height="420px"
+        (pointHovered)="onPointHovered($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>Hovered Point</h3>
+
+      @if (lastHovered(); as pt) {
+        <dl class="meta">
+          <div><dt>Value</dt><dd class="value-chip">{{ pt.value.toFixed(4) }}</dd></div>
+          <div><dt>Row</dt><dd>{{ pt.row }}</dd></div>
+          <div><dt>Col</dt><dd>{{ pt.col }}</dd></div>
+        </dl>
+      } @else {
+        <p class="hint">Move the cursor over the surface to inspect any point. A white sphere marks the nearest vertex.</p>
+      }
+
+      <div class="tip-block">
+        <p class="tip-title">Navigation</p>
+        <ul class="tip-list">
+          <li>Drag — orbit</li>
+          <li>Scroll — zoom</li>
+          <li>Right-drag — pan</li>
+          <li>Hover surface — inspect value</li>
+        </ul>
+      </div>
+
+      <div class="tip-block">
+        <p class="tip-title">Data format</p>
+        <pre class="mini-code"><code>// number[][] — row-major
+[
+  [0.1, 0.5, 0.9],
+  [0.3, 0.8, 0.4],
+  ...
+]</code></pre>
+      </div>
+    </article>
+  </section>
+</article>
