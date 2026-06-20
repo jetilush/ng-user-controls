@@ -5,6 +5,8 @@ Angular workspace for building reusable enterprise-style user controls, starting
 - Code Editor (Monaco-powered)
 - Data Grid
 - Tree View
+- 3D Scene Viewer (Three.js)
+- 3D Bar Chart (Three.js)
 
 ## Current Tech State
 - Angular: 21.2.x
@@ -41,3 +43,4 @@ npm test
 	- `Code Editor` with live content updates
 	- `Data Grid` with sorting, pagination, row selection, row drag-drop reorder, and column drag-drop reorder
 	- `Tree View` with parent-child hierarchy, checkbox cascade, expand/collapse, and drag-drop reordering
+	- `3D Scene Viewer` with Three.js, orbit controls, multiple shapes, background themes, live FPS, and object click events

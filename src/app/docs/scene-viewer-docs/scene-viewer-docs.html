@@ -1,0 +1,73 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>3D Scene Viewer</h2>
+    <p>A Three.js powered control for rendering interactive 3D scenes with orbit navigation, lighting, and click events.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Three.js</span>
+      <span>Orbit Controls</span>
+      <span>Click Events</span>
+      <span>Live FPS</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Pass scene objects and subscribe to click events. Drag to orbit, scroll to zoom, right-click to pan.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card viewer-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+
+        <div class="controls-row">
+          @for (bg of backgrounds; track bg) {
+            <button
+              type="button"
+              class="ctrl-btn"
+              [class.is-active]="background() === bg"
+              (click)="setBackground(bg)"
+            >{{ bg }}</button>
+          }
+          <button type="button" class="ctrl-btn" [class.is-active]="autoRotate()" (click)="toggleAutoRotate()">Auto-rotate</button>
+          <button type="button" class="ctrl-btn" [class.is-active]="showGrid()" (click)="toggleGrid()">Grid</button>
+        </div>
+      </div>
+
+      <uc-scene-viewer
+        label="Interactive 3D Scene"
+        [background]="background()"
+        [autoRotate]="autoRotate()"
+        [showGrid]="showGrid()"
+        [objects]="customObjects()"
+        height="440px"
+        (objectClicked)="onObjectClicked($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>Last Clicked Object</h3>
+
+      @if (lastClicked(); as obj) {
+        <dl class="meta">
+          <div><dt>Type</dt><dd>{{ obj.type }}</dd></div>
+          <div><dt>Color</dt>
+            <dd>
+              <span class="swatch" [style.background]="obj.color"></span>
+              {{ obj.color }}
+            </dd>
+          </div>
+          <div><dt>Position X</dt><dd>{{ obj.positionX ?? 0 }}</dd></div>
+          <div><dt>Position Y</dt><dd>{{ obj.positionY ?? 0 }}</dd></div>
+          <div><dt>Position Z</dt><dd>{{ obj.positionZ ?? 0 }}</dd></div>
+          @if (obj.scale) {
+            <div><dt>Scale</dt><dd>{{ obj.scale }}</dd></div>
+          }
+        </dl>
+      } @else {
+        <p class="hint">Click any shape in the scene to inspect its properties.</p>
+      }
+    </article>
+  </section>
+</article>

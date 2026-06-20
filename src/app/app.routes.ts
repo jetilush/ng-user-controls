@@ -23,6 +23,14 @@ export const routes: Routes = [
 		loadComponent: () => import('./docs/tree-view-docs/tree-view-docs').then((m) => m.TreeViewDocsComponent)
 	},
 	{
+		path: 'docs/scene-viewer',
+		loadComponent: () => import('./docs/scene-viewer-docs/scene-viewer-docs').then((m) => m.SceneViewerDocsComponent)
+	},
+	{
+		path: 'docs/bar-chart-3d',
+		loadComponent: () => import('./docs/bar-chart-3d-docs/bar-chart-3d-docs').then((m) => m.BarChart3dDocsComponent)
+	},
+	{
 		path: '**',
 		redirectTo: 'docs/list-view'
 	}

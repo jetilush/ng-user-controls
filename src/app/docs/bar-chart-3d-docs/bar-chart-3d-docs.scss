@@ -1,0 +1,195 @@
+.docs-page {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero {
+  padding: 1.05rem;
+  border-radius: 14px;
+  border: 1px solid #d6e6f6;
+  background: linear-gradient(130deg, #f6fbff 0%, #ecf5ff 100%);
+}
+
+.docs-page h2 {
+  margin: 0;
+  font-size: 1.85rem;
+}
+
+.hero p {
+  margin: 0.5rem 0 0;
+  color: #42607a;
+}
+
+.chips {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.chips span {
+  padding: 0.34rem 0.58rem;
+  border-radius: 999px;
+  border: 1px solid #c3d9ef;
+  background: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2f5e86;
+}
+
+.docs-block {
+  border: 1px solid #dce7f1;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #f9fcff;
+}
+
+.docs-block h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.docs-block p {
+  margin: 0.55rem 0 0.85rem;
+  color: #4b6278;
+}
+
+pre {
+  margin: 0;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #1f3952;
+  background: #10263a;
+  color: #d4ebff;
+  padding: 0.9rem;
+}
+
+code {
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+  font-size: 0.86rem;
+}
+
+.example-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 1rem;
+}
+
+.example-card {
+  border: 1px solid #d7e3ee;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 8px 18px rgb(19 45 67 / 6%);
+}
+
+.chart-card {
+  background: #08141e;
+  border-color: #1a3349;
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.chart-card .card-head h3 {
+  color: #7db8d8;
+  flex-shrink: 0;
+}
+
+.example-card h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+}
+
+.controls-row {
+  display: flex;
+  gap: 0.38rem;
+  flex-wrap: wrap;
+}
+
+.ctrl-btn {
+  border: 1px solid #1e3655;
+  background: #0f2236;
+  color: #7bb6dd;
+  border-radius: 8px;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.73rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ctrl-btn:hover {
+  background: #152e48;
+}
+
+.ctrl-btn.is-active {
+  background: #1a4872;
+  border-color: #3a78b5;
+  color: #c8e4ff;
+}
+
+.meta {
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.meta div {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meta dt {
+  font-weight: 600;
+  color: #33506d;
+}
+
+.meta dd {
+  margin: 0;
+}
+
+.hint {
+  margin: 0 0 1rem;
+  color: #5a6f82;
+}
+
+.tip-block {
+  border-top: 1px solid #e4edf5;
+  padding-top: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.tip-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #33506d;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tip-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.tip-list li {
+  font-size: 0.83rem;
+  color: #4a6278;
+}
+
+@media (max-width: 1060px) {
+  .example-grid {
+    grid-template-columns: 1fr;
+  }
+}

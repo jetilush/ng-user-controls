@@ -1,0 +1,21 @@
+<div class="chart-wrapper" [style.height]="height()">
+  <header class="chart-head">
+    <h3 class="chart-label">{{ label() }}</h3>
+    <span class="fps-badge" aria-hidden="true">{{ fps() }} fps</span>
+  </header>
+
+  <div class="canvas-container">
+    <canvas #chartCanvas class="chart-canvas"></canvas>
+  </div>
+
+  @if (data().length) {
+    <footer class="chart-legend" aria-label="Legend">
+      @for (series of data(); track series.name) {
+        <div class="legend-item">
+          <span class="legend-dot" [style.background]="series.color" aria-hidden="true"></span>
+          <span>{{ series.name }}</span>
+        </div>
+      }
+    </footer>
+  }
+</div>

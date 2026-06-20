@@ -1,0 +1,7 @@
+<section class="scene-wrapper" [style.height]="height()" [attr.aria-label]="label()">
+  <header class="scene-header">
+    <span>{{ label() }}</span>
+    <span class="scene-stats" aria-live="polite">{{ fps() }} fps</span>
+  </header>
+  <canvas #sceneCanvas class="scene-canvas" (click)="onCanvasClick($event)"></canvas>
+</section>

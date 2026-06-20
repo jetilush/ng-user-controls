@@ -1,0 +1,71 @@
+:host {
+  display: block;
+}
+
+.chart-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #08141e;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1a3349;
+}
+
+.chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid #132235;
+  flex-shrink: 0;
+}
+
+.chart-label {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #7db8d8;
+}
+
+.fps-badge {
+  font-size: 0.7rem;
+  color: #3a6a88;
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas-container {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.chart-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0.55rem 0.9rem;
+  border-top: 1px solid #132235;
+  flex-shrink: 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: #7aaecb;
+}
+
+.legend-dot {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 2px;
+  flex-shrink: 0;
+}

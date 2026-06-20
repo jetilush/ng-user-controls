@@ -1,0 +1,80 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>3D Bar Chart</h2>
+    <p>A Three.js grouped bar chart with animated growth, hover highlight, click events, and Y-axis ticks.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Three.js</span>
+      <span>Animated</span>
+      <span>Grouped Bars</span>
+      <span>Hover + Click</span>
+      <span>Canvas Labels</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Pass a <code>categories</code> array and a <code>data</code> array of series. Each series defines a name, hex color, and values aligned to the categories.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card chart-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+        <div class="controls-row">
+          @for (key of datasetKeys; track key) {
+            <button
+              type="button"
+              class="ctrl-btn"
+              [class.is-active]="datasetKey() === key"
+              (click)="setDataset(key)"
+            >{{ datasetLabels[key] }}</button>
+          }
+          <button type="button" class="ctrl-btn" (click)="toggleBackground()">
+            {{ background() === 'dark' ? 'Light mode' : 'Dark mode' }}
+          </button>
+          <button type="button" class="ctrl-btn" [class.is-active]="autoRotate()" (click)="toggleAutoRotate()">
+            Auto-rotate
+          </button>
+        </div>
+      </div>
+
+      <uc-bar-chart-3d
+        [label]="datasetLabels[datasetKey()]"
+        [categories]="activeDataset.categories"
+        [data]="activeDataset.data"
+        [background]="background()"
+        [autoRotate]="autoRotate()"
+        height="420px"
+        (barClicked)="onBarClicked($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>Clicked Bar</h3>
+
+      @if (lastBar(); as bar) {
+        <dl class="meta">
+          <div><dt>Series</dt><dd>{{ bar.seriesName }}</dd></div>
+          <div><dt>Category</dt><dd>{{ bar.category }}</dd></div>
+          <div><dt>Value</dt><dd>{{ bar.value }}</dd></div>
+          <div><dt>Series #</dt><dd>{{ bar.seriesIndex }}</dd></div>
+          <div><dt>Category #</dt><dd>{{ bar.categoryIndex }}</dd></div>
+        </dl>
+      } @else {
+        <p class="hint">Hover over a bar to highlight it, then click to inspect its data.</p>
+      }
+
+      <div class="tip-block">
+        <p class="tip-title">Navigation</p>
+        <ul class="tip-list">
+          <li>Drag — orbit</li>
+          <li>Scroll — zoom</li>
+          <li>Right-drag — pan</li>
+          <li>Hover bar — highlight</li>
+          <li>Click bar — inspect</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+</article>
