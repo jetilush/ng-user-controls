@@ -1,0 +1,120 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>3D Network Graph</h2>
+    <p>A force-directed graph in 3D space — nodes, edges, spring physics layout, hover highlight, and click selection.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Three.js</span>
+      <span>Spring Physics</span>
+      <span>Force Layout</span>
+      <span>Node Click</span>
+      <span>Edge Click</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Pass a <code>nodes</code> array (id, label, color, size) and an <code>edges</code> array (from, to, color). The layout runs a spring-force simulation automatically.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card graph-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+        <div class="controls-row">
+          @for (key of topologyKeys; track key) {
+            <button
+              type="button"
+              class="ctrl-btn"
+              [class.is-active]="topologyKey() === key"
+              (click)="setTopology(key)"
+            >{{ topologyLabels[key] }}</button>
+          }
+
+          <span class="divider" aria-hidden="true"></span>
+
+          <button type="button" class="ctrl-btn" [class.is-active]="showLabels()"  (click)="toggleLabels()">Labels</button>
+          <button type="button" class="ctrl-btn" [class.is-active]="autoRotate()" (click)="toggleAutoRotate()">Auto-rotate</button>
+          <button type="button" class="ctrl-btn" (click)="onResetLayout()">Reset Layout</button>
+        </div>
+      </div>
+
+      <uc-network-graph
+        [label]="topologyLabels[topologyKey()]"
+        [nodes]="activeTopology.nodes"
+        [edges]="activeTopology.edges"
+        [showLabels]="showLabels()"
+        [autoRotate]="autoRotate()"
+        height="430px"
+        (nodeClicked)="onNodeClicked($event)"
+        (edgeClicked)="onEdgeClicked($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>Selection</h3>
+
+      @if (lastNode(); as node) {
+        <p class="event-tag">Node clicked</p>
+        <dl class="meta">
+          <div>
+            <dt>ID</dt>
+            <dd><code>{{ node.id }}</code></dd>
+          </div>
+          <div>
+            <dt>Label</dt>
+            <dd>{{ node.label ?? '—' }}</dd>
+          </div>
+          <div>
+            <dt>Color</dt>
+            <dd>
+              <span class="swatch" [style.background]="node.color"></span>
+              {{ node.color ?? 'default' }}
+            </dd>
+          </div>
+          @if (node.size) {
+            <div><dt>Size</dt><dd>{{ node.size }}</dd></div>
+          }
+        </dl>
+      } @else if (lastEdge(); as edge) {
+        <p class="event-tag">Edge clicked</p>
+        <dl class="meta">
+          <div><dt>From</dt><dd><code>{{ edge.from }}</code></dd></div>
+          <div><dt>To</dt>  <dd><code>{{ edge.to   }}</code></dd></div>
+          @if (edge.color) {
+            <div>
+              <dt>Color</dt>
+              <dd><span class="swatch" [style.background]="edge.color"></span> {{ edge.color }}</dd>
+            </div>
+          }
+        </dl>
+      } @else {
+        <p class="hint">Click a sphere to select a node, or click near a line to select an edge.</p>
+      }
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-val">{{ activeTopology.nodes.length }}</span>
+          <span class="stat-lbl">Nodes</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">{{ activeTopology.edges.length }}</span>
+          <span class="stat-lbl">Edges</span>
+        </div>
+      </div>
+
+      <div class="tip-block">
+        <p class="tip-title">Navigation</p>
+        <ul class="tip-list">
+          <li>Drag — orbit</li>
+          <li>Scroll — zoom</li>
+          <li>Right-drag — pan</li>
+          <li>Hover sphere — highlight</li>
+          <li>Click sphere — select node</li>
+          <li>Click line — select edge</li>
+          <li>Reset Layout — restart physics</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+</article>

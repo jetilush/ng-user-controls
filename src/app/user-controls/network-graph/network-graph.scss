@@ -1,0 +1,70 @@
+:host { display: block; }
+
+.graph-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #08141e;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1a3349;
+}
+
+.graph-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid #132235;
+  flex-shrink: 0;
+}
+
+.graph-label {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #7db8d8;
+}
+
+.graph-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.selected-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c8e4ff;
+  border: 1px solid #3a78b5;
+  border-radius: 5px;
+  padding: 0.18rem 0.45rem;
+  background: #0f2a3d;
+}
+
+.selected-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.fps-badge {
+  font-size: 0.7rem;
+  color: #3a6a88;
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas-container {
+  flex: 1;
+  min-height: 0;
+}
+
+.graph-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}

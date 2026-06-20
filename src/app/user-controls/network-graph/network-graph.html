@@ -1,0 +1,18 @@
+<div class="graph-wrapper" [style.height]="height()">
+  <header class="graph-head">
+    <h3 class="graph-label">{{ label() }}</h3>
+    <div class="graph-meta">
+      @if (selectedNode(); as node) {
+        <span class="selected-badge" [style.border-color]="node.color">
+          <span class="selected-dot" [style.background]="node.color"></span>
+          {{ node.label ?? node.id }}
+        </span>
+      }
+      <span class="fps-badge" aria-hidden="true">{{ fps() }} fps</span>
+    </div>
+  </header>
+
+  <div class="canvas-container">
+    <canvas #graphCanvas class="graph-canvas"></canvas>
+  </div>
+</div>
