@@ -1,0 +1,27 @@
+<section class="list-view" [attr.aria-label]="label()" role="listbox">
+  @if (items().length === 0) {
+    <p class="empty-state" role="status">{{ emptyText() }}</p>
+  } @else {
+    <ul class="items" role="presentation">
+      @for (item of items(); track item.id) {
+        <li role="presentation">
+          <button
+            class="item"
+            type="button"
+            role="option"
+            [class.is-selected]="isSelected(item)"
+            [class.is-disabled]="item.disabled"
+            [disabled]="item.disabled"
+            [attr.aria-selected]="isSelected(item)"
+            (click)="selectItem(item)"
+          >
+            <span class="title">{{ item.title }}</span>
+            @if (item.subtitle) {
+              <span class="subtitle">{{ item.subtitle }}</span>
+            }
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</section>

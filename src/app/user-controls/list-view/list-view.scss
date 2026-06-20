@@ -1,0 +1,67 @@
+:host {
+  display: block;
+}
+
+.list-view {
+  border: 1px solid #ccd7e2;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #e8eef5;
+  padding: 0.9rem 1rem;
+  background: #ffffff;
+  color: #14304a;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #f4f8fc;
+}
+
+.item:focus-visible {
+  outline: 3px solid #1f7aea;
+  outline-offset: -3px;
+}
+
+.item.is-selected {
+  background: #e9f2fe;
+}
+
+.item.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.items li:last-child .item {
+  border-bottom: 0;
+}
+
+.title {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.subtitle {
+  color: #4f6478;
+  font-size: 0.9rem;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 1rem;
+  color: #4f6478;
+}
