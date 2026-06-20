@@ -1,0 +1,115 @@
+:host {
+  display: block;
+}
+
+.tree-view {
+  border: 1px solid #d5e2ee;
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.tree-toolbar {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.6rem 0.65rem;
+  background: #f6faff;
+  border-bottom: 1px solid #e2ebf4;
+}
+
+.tree-toolbar button {
+  border: 1px solid #c6d9ee;
+  background: #ffffff;
+  color: #2b5f8a;
+  border-radius: 8px;
+  padding: 0.3rem 0.56rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tree-toolbar button:hover {
+  background: #eef6ff;
+}
+
+.tree-root,
+.child-group {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.node-row {
+  display: flex;
+  align-items: center;
+  gap: 0.44rem;
+  min-height: 2rem;
+  border-bottom: 1px solid #edf2f8;
+  color: #13324d;
+  cursor: pointer;
+}
+
+.node-row:hover {
+  background: #f7fbff;
+}
+
+.node-row.is-selected {
+  background: #e9f2fe;
+}
+
+.node-row.is-disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
+
+.drag-handle {
+  width: 0.9rem;
+  color: #69829a;
+  cursor: grab;
+  user-select: none;
+}
+
+.toggle-btn {
+  border: 0;
+  background: transparent;
+  color: #2c5f89;
+  width: 1.2rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.toggle-spacer {
+  display: inline-block;
+  width: 1.2rem;
+}
+
+.label {
+  line-height: 1.2;
+}
+
+li:active .drag-handle {
+  cursor: grabbing;
+}
+
+.child-group {
+  border-left: 1px dashed #dde7f2;
+  margin-left: 0.9rem;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.35;
+}
+
+.cdk-drag-preview {
+  border: 1px solid #cddbed;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 22px rgb(23 56 84 / 16%);
+}
+
+.empty-state {
+  margin: 0;
+  padding: 0.95rem;
+  color: #557089;
+}

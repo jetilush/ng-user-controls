@@ -1,0 +1,98 @@
+<section class="tree-view" [attr.aria-label]="label()" role="tree">
+  <header class="tree-toolbar">
+    <button type="button" (click)="expandAll()">Expand all</button>
+    <button type="button" (click)="collapseAll()">Collapse all</button>
+  </header>
+
+  @if (renderedNodes().length === 0) {
+    <p class="empty-state" role="status">{{ emptyText() }}</p>
+  } @else {
+    <ul
+      class="tree-root"
+      cdkDropList
+      [id]="rootDropListId"
+      [cdkDropListData]="$any(renderedNodes())"
+      [cdkDropListConnectedTo]="dropListIds()"
+      [cdkDropListDisabled]="!draggable()"
+      (cdkDropListDropped)="onNodeDropped($event, null)"
+      role="group"
+    >
+      @for (node of renderedNodes(); track node.id) {
+        <ng-container
+          [ngTemplateOutlet]="nodeTemplate"
+          [ngTemplateOutletContext]="{ $implicit: node, level: 0 }"
+        />
+      }
+    </ul>
+  }
+
+  <ng-template #nodeTemplate let-node let-level="level">
+    <li
+      cdkDrag
+      [cdkDragData]="node.id"
+      [cdkDragDisabled]="!draggable() || node.disabled"
+      role="treeitem"
+      [attr.aria-level]="level + 1"
+      [attr.aria-expanded]="hasChildren(node) ? isExpanded(node) : null"
+      [attr.aria-selected]="isSelected(node)"
+    >
+      <div
+        class="node-row"
+        [class.is-selected]="isSelected(node)"
+        [class.is-disabled]="node.disabled"
+        [style.padding-inline-start.rem]="0.65 + level * 0.95"
+        (click)="onNodeClicked(node)"
+      >
+        @if (draggable()) {
+          <span class="drag-handle" cdkDragHandle aria-hidden="true">::</span>
+        }
+
+        @if (hasChildren(node)) {
+          <button
+            type="button"
+            class="toggle-btn"
+            [attr.aria-label]="isExpanded(node) ? 'Collapse node' : 'Expand node'"
+            (click)="$event.stopPropagation(); toggleExpanded(node)"
+          >
+            {{ isExpanded(node) ? '▾' : '▸' }}
+          </button>
+        } @else {
+          <span class="toggle-spacer" aria-hidden="true"></span>
+        }
+
+        @if (checkable()) {
+          <input
+            type="checkbox"
+            [checked]="isChecked(node)"
+            [indeterminate]="isIndeterminate(node)"
+            [disabled]="node.disabled"
+            (click)="$event.stopPropagation()"
+            (change)="onCheckChanged(node, $any($event.target).checked)"
+          />
+        }
+
+        <span class="label">{{ node.label }}</span>
+      </div>
+
+      @if (hasChildren(node) && isExpanded(node)) {
+        <ul
+          class="child-group"
+          role="group"
+          cdkDropList
+          [id]="dropListId(node.id)"
+          [cdkDropListData]="$any(node.children)"
+          [cdkDropListConnectedTo]="dropListIds()"
+          [cdkDropListDisabled]="!draggable()"
+          (cdkDropListDropped)="onNodeDropped($event, node.id)"
+        >
+          @for (child of node.children ?? []; track child.id) {
+            <ng-container
+              [ngTemplateOutlet]="nodeTemplate"
+              [ngTemplateOutletContext]="{ $implicit: child, level: level + 1 }"
+            />
+          }
+        </ul>
+      }
+    </li>
+  </ng-template>
+</section>

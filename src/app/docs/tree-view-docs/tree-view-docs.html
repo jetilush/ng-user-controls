@@ -1,0 +1,51 @@
+<article class="docs-page">
+  <header class="hero">
+    <h2>Tree View</h2>
+    <p>Hierarchical parent-child navigation with checkbox cascade and drag-drop reordering.</p>
+    <div class="chips" aria-hidden="true">
+      <span>Parent-Child</span>
+      <span>Check Cascade</span>
+      <span>Drag & Drop</span>
+    </div>
+  </header>
+
+  <section class="docs-block">
+    <h3>How to use</h3>
+    <p>Provide nested nodes, then track selection, check state, and reorder events.</p>
+    <pre><code>{{ usageCode }}</code></pre>
+  </section>
+
+  <section class="example-grid">
+    <article class="example-card">
+      <div class="card-head">
+        <h3>Live Example</h3>
+        <button type="button" class="reset-button" (click)="resetTree()">Reset tree</button>
+      </div>
+
+      <uc-tree-view
+        label="Project tree"
+        [nodes]="nodes()"
+        [checkable]="true"
+        [draggable]="true"
+        (nodeSelected)="onNodeSelected($event)"
+        (nodesReordered)="onNodesReordered($event)"
+        (checkedStateChanged)="onCheckedStateChanged($event)"
+      />
+    </article>
+
+    <article class="example-card">
+      <h3>State Snapshot</h3>
+
+      @if (selectedNode(); as selected) {
+        <p class="status-line"><strong>Selected:</strong> {{ selected.label }}</p>
+      } @else {
+        <p class="status-line">Selected: none</p>
+      }
+
+      <p class="status-line"><strong>Checked IDs:</strong> {{ checkState().checkedIds.join(', ') || 'none' }}</p>
+      <p class="status-line">
+        <strong>Indeterminate IDs:</strong> {{ checkState().indeterminateIds.join(', ') || 'none' }}
+      </p>
+    </article>
+  </section>
+</article>

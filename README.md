@@ -4,6 +4,7 @@ Angular workspace for building reusable enterprise-style user controls, starting
 - List View
 - Code Editor (Monaco-powered)
 - Data Grid
+- Tree View
 
 ## Current Tech State
 - Angular: 21.2.x
@@ -39,3 +40,4 @@ npm test
 	- `List View` with selection and row drag-drop reorder
 	- `Code Editor` with live content updates
 	- `Data Grid` with sorting, pagination, row selection, row drag-drop reorder, and column drag-drop reorder
+	- `Tree View` with parent-child hierarchy, checkbox cascade, expand/collapse, and drag-drop reordering
