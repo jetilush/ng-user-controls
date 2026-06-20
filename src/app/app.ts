@@ -38,4 +38,8 @@ export class App {
   protected onItemSelected(item: ListViewItem): void {
     this.selected.set(item);
   }
+
+  protected onItemsReordered(items: readonly ListViewItem[]): void {
+    this.users.set(items);
+  }
 }

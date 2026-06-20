@@ -1,10 +1,10 @@
 <section class="list-view" [attr.aria-label]="label()" role="listbox">
-  @if (items().length === 0) {
+  @if (renderedItems().length === 0) {
     <p class="empty-state" role="status">{{ emptyText() }}</p>
   } @else {
-    <ul class="items" role="presentation">
-      @for (item of items(); track item.id) {
-        <li role="presentation">
+    <ul class="items" role="presentation" cdkDropList (cdkDropListDropped)="reorderItems($event)">
+      @for (item of renderedItems(); track item.id) {
+        <li role="presentation" cdkDrag [cdkDragDisabled]="item.disabled">
           <button
             class="item"
             type="button"
@@ -15,6 +15,7 @@
             [attr.aria-selected]="isSelected(item)"
             (click)="selectItem(item)"
           >
+            <span class="drag-handle" cdkDragHandle aria-hidden="true">::</span>
             <span class="title">{{ item.title }}</span>
             @if (item.subtitle) {
               <span class="subtitle">{{ item.subtitle }}</span>

@@ -1,7 +1,7 @@
 <main class="page">
   <header class="hero">
     <h1>First User Control: List View</h1>
-    <p>Reusable, selectable, and ready to evolve with sorting, filtering, and virtualization.</p>
+    <p>Reusable, selectable, and now reorderable with drag and drop.</p>
   </header>
 
   <section class="layout">
@@ -12,6 +12,7 @@
         emptyText="No team members found."
         [items]="users()"
         (itemSelected)="onItemSelected($event)"
+        (itemsReordered)="onItemsReordered($event)"
       />
     </article>
 
